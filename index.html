@@ -11,7 +11,7 @@
     :root {
       --bg:#ffffff; --bg2:#ffffff; --ink:#1a1a14; --ink2:#3d3c32;
       --muted:#7a7868; --accent:#c0411e; --accent2:#e07d5b;
-      --gold:#b8963e; --card:#ffffff; --border:#d8d4c8;
+      --gold:#000000; --card:#ffffff; --border:#d8d4c8;
       --serif:'DM Serif Display',Georgia,serif;
       --sans:'DM Sans',system-ui,sans-serif;
     }
@@ -107,7 +107,7 @@
     .info-row span{color:var(--muted);margin-left:auto;font-weight:500;font-size:0.85rem;}
     .about-full{grid-column:1/-1;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.6rem;}
     .about-full p{line-height:1.8;color:var(--ink2);font-weight:300;font-size:0.96rem;}
-    .kafka-card{grid-column:1/-1;background:linear-gradient(135deg,#1a1a14 0%,#2d2c22 100%);border:1px solid #3d3c32;border-radius:18px;padding:1.75rem;display:flex;gap:1.5rem;align-items:flex-start;flex-wrap:wrap;}
+    .kafka-card{grid-column:1/-1;background:linear-gradient(135deg,#1a1a14 0%,#2d2c22 100%);border:1px solid #ffffff;border-radius:18px;padding:1.75rem;display:flex;gap:1.5rem;align-items:flex-start;flex-wrap:wrap;}
     .kafka-card blockquote{font-family:var(--serif);font-size:1.05rem;font-style:italic;line-height:1.75;color:#e8e4d8;margin-bottom:0.6rem;}
 
     /* SKILLS */
@@ -152,11 +152,19 @@
     .project-tag{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:0.22rem 0.58rem;font-size:0.72rem;font-weight:500;color:var(--ink2);}
 
     /* RESEARCH */
-    .research-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.9rem;margin-bottom:1.5rem;position:relative;overflow:hidden;}
-    .research-card::before{content:'"';position:absolute;top:-0.5rem;right:1.5rem;font-family:var(--serif);font-size:8rem;color:var(--bg2);line-height:1;pointer-events:none;}
+    .research-grid { display: flex; flex-direction: column; gap: 2rem; }
+    .research-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.9rem;position:relative;overflow:hidden;}
+    .research-card.publication::before{content:'\f518'; font-family: "Font Awesome 6 Free"; font-weight: 900; position:absolute; top:1.2rem; right:1.5rem; font-size:3rem; color:var(--bg2); opacity: 0.6; pointer-events:none;}
+    .research-card.thesis::before{content:'\f501'; font-family: "Font Awesome 6 Free"; font-weight: 900; position:absolute; top:1.2rem; right:1.5rem; font-size:3rem; color:var(--bg2); opacity: 0.6; pointer-events:none;}
+    .research-card.ongoing::before{content:'\f080'; font-family: "Font Awesome 6 Free"; font-weight: 900; position:absolute; top:1.2rem; right:1.5rem; font-size:3rem; color:var(--bg2); opacity: 0.6; pointer-events:none;}
     .research-label{display:inline-flex;align-items:center;gap:0.4rem;background:rgba(192,65,30,0.08);border:1px solid rgba(192,65,30,0.2);border-radius:100px;padding:0.22rem 0.75rem;font-size:0.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.9rem;}
-    .research-title{font-family:var(--serif);font-size:1.25rem;line-height:1.4;margin-bottom:0.9rem;font-style:italic;}
-    .research-body{font-size:0.93rem;line-height:1.8;color:var(--ink2);font-weight:300;}
+    .research-title{font-family:var(--serif);font-size:1.25rem;line-height:1.4;margin-bottom:0.5rem;font-style:normal;}
+    .research-citation{font-size:0.92rem; color:var(--ink); font-weight: 500; margin-bottom: 0.9rem; line-height: 1.5;}
+    .research-citation strong { color: var(--accent); }
+    .research-date{font-size:0.75rem; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:0.9rem; display:block;}
+    .research-bullets{margin-left: 1.2rem; margin-top: 0.7rem;}
+    .research-bullets li{font-size:0.9rem;line-height:1.7;color:var(--ink2);font-weight:300; margin-bottom: 0.4rem;}
+
 
     /* ACHIEVEMENTS */
     .achievement-item{display:flex;gap:1rem;align-items:flex-start;padding:1.15rem;background:var(--card);border:1px solid var(--border);border-radius:14px;margin-bottom:0.9rem;transition:transform 0.2s;}
@@ -230,10 +238,9 @@
     <div class="hero-text">
       <h1 class="hero-name">Akash<br><em>Sikdar Sudip</em></h1>
       <p class="hero-role">BSc in Industrial &amp; Production Engineering</p>
-      <p class="hero-bio">I am an Industrial & Production Engineering graduate from BUET with research interests in artificial intelligence, machine learning, optimization, and intelligent manufacturing systems. My work focuses on integrating data-driven and simulation-based approaches to improve decision-making, automation, and operational efficiency in complex systems.</p>
+      <p class="hero-bio">I am an Industrial & Production Engineering graduate from the Bangladesh University of Engineering and Technology (BUET). My research interests lie at the intersection of artificial intelligence, machine learning, optimization, and intelligent manufacturing systems. I am particularly interested in integrating data-driven and simulation-based approaches to enhance decision-making, automation, and operational efficiency in complex industrial systems.</p>
       <div class="hero-btns">
         <a href="resume-example.pdf" class="btn-primary" download><i class="fa-solid fa-download"></i> My CV</a>
-        <button class="btn-secondary" onclick="showPage('about')"><i class="fa-solid fa-arrow-right"></i> Learn More</button>
       </div>
       <div class="hero-socials">
         <a href="https://www.linkedin.com/in/akash-sikdar-sudip-bb3588257/" target="_blank" class="social-link"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
@@ -275,16 +282,12 @@
       </div>
       <div class="about-full">
         <h3 style="font-family:var(--serif);font-size:1.1rem;margin-bottom:0.75rem;">
-          <i class="fa-solid fa-quote-left" style="color:var(--accent);margin-right:0.5rem;"></i> My Story
+          <i class="fa-solid fa-quote-left" style="color:var(--accent);margin-right:0.5rem;"></i> My Intro
         </h3>
         <p>I am Akash Sikdar Sudip, an Industrial & Production Engineering graduate from Bangladesh University of Engineering and Technology (BUET). My research interests lie at the intersection of artificial intelligence, machine learning, optimization, and intelligent manufacturing systems. I am particularly interested in using data-driven, simulation-based, and mathematical approaches to address complex real-world problems and improve decision-making in engineering systems.</p>
         <p style="margin-top:1rem;">Beyond academics, I am an active community leader &mdash; having served as General Secretary of an organizing committee of Saraswati Puja (Worship of Goddes Saraswati) that hosted the Ambassador of Nepal to Bangladesh, and as Vice President of BADHAN BUET Zone, where I coordinated blood donation drives. I believe in combining technical expertise with leadership to create meaningful impact.</p>
       </div>
       <div class="kafka-card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Kafka_portrait.jpg/240px-Kafka_portrait.jpg"
-             alt="Franz Kafka"
-             style="width:86px;height:108px;object-fit:cover;border-radius:10px;flex-shrink:0;filter:grayscale(20%);border:2px solid #3d3c32;"
-             onerror="this.style.display='none'"/>
         <div>
           <div style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:0.7rem;">A Quote I Live By</div>
           <blockquote>"Don't bend; don't water it down; don't try to make it logical; don't edit your own soul according to the fashion. Rather, follow your most intense obsessions mercilessly."</blockquote>
@@ -311,7 +314,7 @@
       </div>
       <div class="skill-group">
         <h3><i class="fa-solid fa-chart-bar"></i> Statistical Analysis</h3>
-        <div class="skill-tags"><span class="skill-tag">Power BI</span><span class="skill-tag">Excel</span><span class="skill-tag">ARDL</span><span class="skill-tag">RSM</span></div>
+        <div class="skill-tags"><span class="skill-tag">Power BI</span><span class="skill-tag">Excel</span><span class="skill-tag">ARDL</span></div>
       </div>
       <div class="skill-group">
         <h3><i class="fa-solid fa-palette"></i> Design &amp; Presentation</h3>
@@ -364,20 +367,50 @@
 <!-- RESEARCH -->
 <div id="page-research" class="page">
   <div class="page-wrap-narrow">
-    <div class="page-title">My <em>Research</em></div>
-    <p class="page-subtitle">Academic contributions to sustainability and environmental science.</p>
-    <div class="research-card">
-      <div class="research-label"><i class="fa-solid fa-flask"></i> Working Paper</div>
-      <h2 class="research-title">A Hybrid ARDL-RSM Framework for Understanding the Impact of Energy, Urbanization, and Water Resources on the Ecological Footprint</h2>
-      <p class="research-body">This paper investigates the long-run and short-run dynamics between the Ecological Footprint and its key determinants &mdash; namely Alternative and Nuclear Energy Use, Renewable Internal Freshwater Resources, and Urban Population &mdash; within an environmental sustainability framework.</p>
-      <p class="research-body" style="margin-top:1rem;">Using an ARDL model, this study examines the impact of these variables on the Ecological Footprint through energy consumption, resource management, and urbanization. The study further identifies limitations of the proposed model including data availability and statistical estimation approaches, and suggests machine learning applications for future research.</p>
-      <p class="research-body" style="margin-top:1rem;">This work emphasizes the need to reconsider sustainable energy policies, resource management efficiency, and urban planning in achieving long-term environmental sustainability.</p>
-      <div class="skill-tags" style="margin-top:1.2rem;">
-        <span class="skill-tag">ARDL Model</span><span class="skill-tag">RSM Framework</span><span class="skill-tag">Ecological Footprint</span><span class="skill-tag">Urbanization</span><span class="skill-tag">Renewable Energy</span><span class="skill-tag">Environmental Sustainability</span><span class="skill-tag">Water Resources</span>
+    <div class="page-title">Research &amp; <em>Publications</em></div>
+    <p class="page-subtitle">Academic contributions to sustainability, data science, and environmental engineering.</p>
+    
+    <div class="research-grid">
+      
+      <!-- 1. CONFERENCE PAPER -->
+      <div class="research-card publication">
+        <div class="research-label"><i class="fa-solid fa-book-open"></i> Conference Paper</div>
+        <span class="research-date">Feb 2025 – Dec 2025</span>
+        <h2 class="research-title">Multi-Model Machine Learning Analysis of Ecological Load Ratio Using Classification, Regression, and Clustering Approaches in EU Countries</h2>
+        <div class="research-citation">Debnath, A., <strong>Sudip, A. S.</strong>, Mandol, S. <em>8th IEOM Bangladesh International Conference on Industrial Engineering and Operations Management</em>, Dhaka, Bangladesh, December 20–21, 2025.</div>
+        <ul class="research-bullets">
+          <li>Applied ensemble machine learning models (XGBoost, Gradient Boosting, AdaBoost, LightGBM) and Gaussian clustering algorithms for ecological load classification and forecasting.</li>
+          <li>Achieved 98.67% classification accuracy and R² = 0.9823 for ELR forecasting, identifying major ecological drivers using feature importance analysis.</li>
+        </ul>
       </div>
+
+      <!-- 2. UNDERGRADUATE THESIS -->
+      <div class="research-card thesis">
+        <div class="research-label"><i class="fa-solid fa-graduation-cap"></i> Undergraduate Thesis (Under Review)</div>
+        <span class="research-date">May 2025 – Jun 2026</span>
+        <h2 class="research-title">Determinants of Environmental Sustainability in India: An ARDL Analysis Using the Load Capacity Factor</h2>
+        <div class="research-citation"><strong>Sudip, A. S.</strong>, Debnath, A., Raihan, A., Bari, A. M.</div>
+        <ul class="research-bullets">
+          <li>Utilized ARDL, FMOLS, DOLS, and CCR econometric techniques with ADF/PP/DF-GLS stationarity tests to analyze environmental sustainability determinants in India (1990–2024).</li>
+          <li>Found that a 1% rise in GDP per capita decreases LCF by 0.311% and confirmed robust long-run negative impacts of economic growth, fossil fuel energy production, and trade openness (ARDL R² = 0.9928).</li>
+        </ul>
+      </div>
+
+      <!-- 3. ONGOING WORK -->
+      <div class="research-card ongoing">
+        <div class="research-label"><i class="fa-solid fa-spinner fa-spin"></i> Ongoing Research Work</div>
+        <span class="research-date">Dec 2025 – Current</span>
+        <h2 class="research-title">Interpretable Machine Learning Frameworks for Trans-National Ecological Deficit Prediction</h2>
+        <ul class="research-bullets">
+          <li>Developed interpretable ML models (Ridge, Lasso, Elastic Net, Bayesian Ridge, Quantile Regression) to predict Ecological Load Ratio and Ecological Deficit Per Capita across EU-27 countries, using a five-track hybrid feature selection framework with Borda count aggregation and VIF-based multicollinearity control.</li>
+          <li>Applied SHAP, PDP, and LIME for model interpretability, identifying GDP per capita and freshwater resource availability as key drivers of ecological sustainability.</li>
+        </ul>
+      </div>
+
     </div>
   </div>
 </div>
+
 
 <!-- EXPERIENCE -->
 <div id="page-experience" class="page">
@@ -406,17 +439,17 @@
     <div class="edu-card">
       <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
       <div>
-        <div class="edu-year">2022 &ndash; Present</div>
+        <div class="edu-year">Jan 2022 &ndash; Jun 2026</div>
         <div class="edu-degree">BSc in Industrial and Production Engineering</div>
         <div class="edu-school">Bangladesh University of Engineering and Technology (BUET)</div>
-        <div class="edu-school" style="margin-top:0.3rem;">Level 4 / Term 2 &nbsp;&middot;&nbsp; CGPA: 3.54 / 4.00</div>
+        <div class="edu-school" style="margin-top:0.3rem;">Graduated &nbsp;&middot;&nbsp; CGPA: 3.55 / 4.00</div>
       </div>
-      <div class="edu-gpa">3.54 GPA</div>
+      <div class="edu-gpa">3.55 GPA</div>
     </div>
     <div class="edu-card">
       <div class="edu-icon"><i class="fa-solid fa-school"></i></div>
       <div>
-        <div class="edu-year">2018 &ndash; 2021</div>
+        <div class="edu-year">Jul 2018 &ndash;Jan 2021</div>
         <div class="edu-degree">Higher Secondary Certificate (HSC)</div>
         <div class="edu-school">Govt. MM College, Jashore</div>
       </div>
@@ -425,7 +458,7 @@
     <div class="edu-card">
       <div class="edu-icon"><i class="fa-solid fa-book"></i></div>
       <div>
-        <div class="edu-year">2016 &ndash; 2018</div>
+        <div class="edu-year">Jan 2016 &ndash;May 2018</div>
         <div class="edu-degree">Secondary School Certificate (SSC)</div>
         <div class="edu-school">Nahata Rani Patit Pabani Secondary School</div>
       </div>
