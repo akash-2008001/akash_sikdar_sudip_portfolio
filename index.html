@@ -43,6 +43,47 @@
     .hamburger-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
     .hamburger-btn.open span:nth-child(2){opacity:0;}
     .hamburger-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+    /* HORIZONTAL NAVIGATION BAR LINKS */
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .nav-horizontal-menu {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-left: auto; /* Pushes links to the right side next to hamburger button */
+    }
+
+    .nav-txt-link {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-family: var(--sans);
+      font-size: 0.92rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      /* Inherits text color of "Sikdar Sudip" (italicized accent color) */
+      color: var(--accent); 
+      transition: background-color 0.25s ease, color 0.25s ease;
+      text-decoration: none;
+    }
+
+    /* Hover State Transformation */
+    .nav-txt-link:hover {
+      background-color: var(--accent); /* Rectangular box matches text color */
+      color: #ffffff;                 /* Text turns white */
+    }
+
+    /* Responsive Handling: Hide text links on smaller mobile devices to avoid crowding */
+    @media(max-width: 768px) {
+      .nav-horizontal-menu {
+        display: none;
+      }
+    }
 
     .menu-overlay{position:fixed;inset:0;background:rgba(26,26,20,0.35);z-index:200;display:none;}
     .menu-overlay.open{display:block;}
@@ -204,10 +245,20 @@
 
 <nav>
   <div class="nav-logo" onclick="showPage('home')">Akash Sikdar Sudip<span>.</span></div>
+  
+  <!-- NEW: Horizontal Text Navigation Wrapper -->
+  <div class="nav-horizontal-menu">
+    <button class="nav-txt-link" onclick="showPage('about')">About</button>
+    <button class="nav-txt-link" onclick="showPage('projects')">Projects</button>
+    <button class="nav-txt-link" onclick="showPage('research')"><i class="fa-solid fa-flask" style="font-size: 0.8rem; margin-right: 0.3rem;"></i>Research</button>
+    <button class="nav-txt-link" onclick="showPage('education')">Education</button>
+  </div>
+
   <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
+
 
 <div class="menu-overlay" id="menuOverlay"></div>
 
