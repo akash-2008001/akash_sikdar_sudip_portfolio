@@ -22,7 +22,14 @@
     .page{display:none;min-height:100vh;animation:fadeIn 0.4s ease;}
     .page.active{display:block;}
     @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-    #page-home.active{display:flex;}
+    
+    /* Updated layout wrapper for home and about sections stacking */
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+    #page-home.active{display:flex;min-height:100vh;}
+    #page-about.active{min-height:auto; padding-top: 0; padding-bottom: 5rem;}
 
     nav{
       position:fixed;top:0;left:0;right:0;z-index:100;
@@ -248,7 +255,7 @@
   
   <!-- NEW: Horizontal Text Navigation Wrapper -->
   <div class="nav-horizontal-menu">
-    <button class="nav-txt-link" onclick="showPage('about')">About</button>
+    <button class="btn-secondary" onclick="showPage('home')"><i class="fa-solid fa-arrow-right"></i> About</button>
     <button class="nav-txt-link" onclick="showPage('projects')">Projects</button>
     <button class="nav-txt-link" onclick="showPage('research')">Research</button>
     <button class="nav-txt-link" onclick="showPage('education')">Education</button>
@@ -613,16 +620,30 @@
     var pages = document.querySelectorAll('.page');
     for (var i = 0; i < pages.length; i++) {
       pages[i].classList.remove('active');
+      pages[i].style.display = 'none'; // Ensure clean transitions
     }
-    var target = document.getElementById('page-' + id);
-    if (target) {
-      target.classList.add('active');
+    
+    if (id === 'home' || id === 'about') {
+      // Show BOTH sections stacked on top of each other
+      var homePage = document.getElementById('page-home');
+      var aboutPage = document.getElementById('page-about');
+      if (homePage) { homePage.classList.add('active'); homePage.style.display = 'flex'; }
+      if (aboutPage) { aboutPage.classList.add('active'); aboutPage.style.display = 'block'; }
+    } else {
+      // Single page handling for projects, research, etc.
+      var target = document.getElementById('page-' + id);
+      if (target) {
+        target.classList.add('active');
+        target.style.display = (id === 'home') ? 'flex' : 'block';
+      }
     }
+    
     window.scrollTo(0, 0);
     hamburgerBtn.classList.remove('open');
     slideMenu.classList.remove('open');
     menuOverlay.classList.remove('open');
   }
+
 </script>
 
 </body>
